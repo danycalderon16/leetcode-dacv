@@ -1,16 +1,38 @@
 var letterCombinations = function (digits) {
-  const map = {
-    1: "",
-    2: "abc",
-    3: "def",
-    4: "ghi",
-    5: "jkl",
-    6: "mno",
-    7: "pqrs",
-    8: "tuv",
-    9: "wxyz",
-  };
-  return map[2];
-};
+  const combinatios = [];
+  if (digits == "") return combinatios;
+  let index = 0;
+  let output = "";
 
-console.log(letterCombinations(23));
+  const mapping = [
+    "",
+    "",
+    "abc",
+    "def",
+    "ghi",
+    "jkl",
+    "mno",
+    "pqrs",
+    "tuv",
+    "wxyz",
+  ];
+  solve(digits, combinatios, index, output, mapping);
+  return combinatios;
+};
+function solve(digits, ans, index, output, mapping) {
+  if (index >= digits.length) {
+    ans.push(output);
+    return;
+  }
+
+  let number = parseInt(digits[index]);
+  let temp = mapping[number];
+
+  for (let i = 0; i < temp.length; i++) {
+    output = output.concat(temp[i]);
+    solve(digits, ans, index + 1, output, mapping);
+    output = output.slice(0, -1);
+  }
+}
+
+console.log(letterCombinations("23"));
