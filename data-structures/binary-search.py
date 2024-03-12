@@ -5,15 +5,18 @@ def binary_search(nums:list, target:int )->int:
   return bs(nums,target, left, right)
 
 def bs(nums:list, target:int,left:int, right:int)-> int:
-  piv = (right+left) // 2
-  if(nums[piv] == target):
-    return piv
+  if(left>right):
+    return -1
   else:
-      if(target<nums[piv]):
-        return bs(nums, target,left,piv)
-      else:
-        return bs(nums,target, piv, right)
-  return -1
+    piv = ((right+left) // 2)
+    if(nums[piv] == target):
+      return piv
+    else:
+        if(target<nums[piv]):
+          return bs(nums, target,left,piv-1)
+        else:
+          return bs(nums,target, piv+1, right)
+
 
 if __name__ == "__main__":
   res = binary_search([-1,0,3,5,9,12],2)
