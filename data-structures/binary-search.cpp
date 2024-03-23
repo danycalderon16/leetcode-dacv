@@ -1,19 +1,18 @@
 #include <iostream>
+#include <vector>
 
-int binarySearch(int a[], int target){
-    int left = 0;
-    int right = sizeof(a[0]);
+int binarySearch(std::vector<int>& nums, int target){
+    int left = nums.begin();
+    int right = nums.end() - 1;
     
     while(left<=right){
-        int piv = (right+left) / 2;
-        if(a[piv]==target){
-            return piv;
+        auto mid = left + (right-left)/2;
+        if(*mid == target){
+            return mid;
+        }else if (*mid<target){
+            left = mid+1;
         }else{
-            if(target<a[piv]){
-                right = piv - 1;
-            }else{
-                left = piv + 1;
-            }
+            right = mid-1;
         }
     }
     
