@@ -31,6 +31,6 @@ class Solution:
 
 
 if __name__ == "__main__":
-  list = [11, 2, 33, 9, 15]
+  list = [9,3,2,1,45]
   res = Solution().merge_sort(list)
   print(res)
