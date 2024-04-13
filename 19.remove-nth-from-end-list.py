@@ -1,8 +1,21 @@
 # Definition for singly-linked list.
 class ListNode(object):
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=None, next=None):
         self.val = val
         self.next = next
+      
+    def insert(self, val):
+        current = self
+        while current.next is not None:
+            current = current.next
+        current.next = ListNode(val)
+    
+    def print(self):
+        current = self
+        while current is not None:
+            print(current.val)
+            current = current.next
+
 class Solution(object):
     def removeNthFromEnd(self, head, n):
         """
@@ -13,7 +26,9 @@ class Solution(object):
         
 
 if __name__ == '__main__':
-    head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
-    print(head)
+    head = ListNode(234)
 
-    res = Solution().removeNthFromEnd()
+    head.insert(1)
+    head.print()
+
+    # res = Solution().removeNthFromEnd()
