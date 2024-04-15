@@ -26,17 +26,24 @@ class ListNode(object):
         return count
 
     def removeNthFromEnd(self, head, n):
-        current = head
-        length = self.length(head)
-        if length == 1:
-            return []
-        for i in range(0, length):
-            if (i == (length-n)):
-                prev = current.next
+        dummy = ListNode(0)
+        dummy.next = head
+        first = dummy
+        second = dummy
         
-        print(prev.val)
-        prev.next = current.next
-        return current
+        # Move the first pointer ahead by n+1 steps
+        for i in range(n+1):
+            first = first.next
+        
+        # Move both pointers simultaneously until the first pointer reaches the end
+        while first is not None:
+            first = first.next
+            second = second.next
+        
+        # Now the second pointer points to the node just before the node to be deleted
+        second.next = second.next.next
+        
+        return dummy.next
 
 class Solution(object):
     def removeNthFromEnd(self, head, n):
