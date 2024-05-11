@@ -5,8 +5,6 @@
 var lengthOfLastWord = function (s) {
   const strs = s.split(" ");
   const words = [];
-  let max = 0;
-
   for (let i = 0; i < strs.length; i++) {
     const len = strs[i].length;
     if (len > 0) {
