@@ -4,13 +4,17 @@
  */
 var lengthOfLastWord = function (s) {
   const strs = s.split(" ");
+  const words = [];
   let max = 0;
 
   for (let i = 0; i < strs.length; i++) {
-    if (strs[i].length > max) max = strs[i].length;
+    const len = strs[i].length;
+    if (len > 0) {
+      words.push(strs[i]);
+    }
   }
 
-  return max;
+  return words[words.length - 1].length;
 };
 
-log(lengthOfLastWord("   fly me   to   the moon  "));
+console.log(lengthOfLastWord("   fly me   to   the moon  "));
