@@ -5,6 +5,7 @@ class Solution(object):
         :type divisor: int
         :rtype: int
         """
+        
         negaviteDivisor = divisor < 0 
         if negaviteDivisor:
           divisor *= -1
