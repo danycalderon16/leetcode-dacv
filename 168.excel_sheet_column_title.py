@@ -5,19 +5,14 @@ class Solution(object):
         :rtype: str
         """
 
-        results = []
+        results = ""
 
         while columnNumber > 0:
-          results.append(chr((columnNumber-1)%26+65))
+          results += (chr((columnNumber-1)%26+65))
           columnNumber = (columnNumber-1) // 26; 
         
-        results.reverse()
-
-        return "".join(results)
+        return (results[::-1])
         
 
 if __name__ == "__main__":
-    print(Solution().convertToTitle(1))
-    print(Solution().convertToTitle(2))
-    print(Solution().convertToTitle(10))
-    print(Solution().convertToTitle(701))
+    print(Solution().convertToTitle(72332332330231))
