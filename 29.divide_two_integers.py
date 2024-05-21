@@ -6,27 +6,31 @@ class Solution(object):
         :rtype: int
         """
         
-        negaviteDivisor = divisor < 0 
-        if negaviteDivisor:
-          divisor *= -1
-        
-        negaviteDivident = dividend < 0
-        if negaviteDivident:
-          dividend *= -1
+        if divisor == 1:
+          return dividend if dividend >= 2147483648 else -2147483648
+        if divisor == -1:
+          return -dividend if dividend >= 2147483648 else 2147483647
 
-        quotient = 0
-        
-        while dividend > 0:
-          dividend -= divisor 
-          if dividend < 0:
-            continue
-          quotient += 1
+        sign = 1 
+        if dividend < 0:
+          sign *= -1
+        if divisor < 0:
+          sign *= -1
 
-        if negaviteDivident and negaviteDivisor or (not negaviteDivident) and (not negaviteDivisor):
-          return quotient
+        dividend = dividend if dividend >= 0 else -dividend
+        divisor = divisor if divisor >= 0 else -divisor
 
-        if negaviteDivident or negaviteDivisor:
-          return quotient * (-1)
+        res = 0
+        i = 1
+        while dividend >= divisor: 
+          if divisor ** (i+1) > dividend:
+            res += divisor ** (i-1)
+            dividend -= divisor ** i
+            i = 1
+          else:
+            i += 1
+        return sign*res
+
 
 if __name__ == '__main__':
     s = Solution()
