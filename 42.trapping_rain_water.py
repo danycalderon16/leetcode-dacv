@@ -1,31 +1,27 @@
 def trapping_rain_water(height):
-    left = 0
-    total = 0
+    l_wall = 0
+    r_wall = 0
+    n = len(height)
+    max_left  = [0] * n
+    max_right = [0] * n
     
-    while left < len(height):
-        for right in range(left+1, len(height)):
-            if height[left] <= height[right]:
-                for i in range(left + 1, right):
-                    total += height[left] - height[i]
-                
-                left = right
-                break
-        else:
-            if left + 1 < len(height):
-                max_right = left + 1
-                for k in range(left + 1, len(height)):
-                    if height[k] > height[max_right]:
-                        max_right = k
-                
-                for i in range(left + 1, max_right):
-                    total += height[max_right] - height[i]
-                
-                left = max_right
-            else:
-                break
-            
-    return total
-
+    for i in range(n):
+        j = -i - 1
+        max_left[i] = l_wall
+        max_right[j] = r_wall
+        
+        l_wall = max(l_wall,height[i])
+        r_wall = max(r_wall,height[j])
+        
+        
+    summ = 0
+    
+    for i in range(n):
+        pot = min(max_left[i],max_right[i])
+        summ += max(0, pot - height[i])
+      
+    return summ
+    
 if "__main__" == __name__:
     res = trapping_rain_water(height=[4,2,0,3,2,5])
     print(res)
