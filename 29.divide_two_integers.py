@@ -27,7 +27,7 @@ class Solution(object):
         if signs[0] != signs[1]:
           quocient = -quocient
         
-        return quocient
+        return min(max(-2147483648, quocient), 2147483647)
         
 if __name__ == '__main__':
     s = Solution()
