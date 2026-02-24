@@ -2,28 +2,28 @@ from typing import List
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        # li = len(nums) - 1
-        # piv = 0 
+        if len(nums) == 1 or len(nums) == 0: 
+            return len(nums)
+        
+        limit = len(nums)         
+        i = 1
+        j = 1
+          
 
-        # while piv < li:
-        #     if nums[piv] == nums[piv + 1]:
-        #         nums.pop(piv + 1)
-        #         li -= 1
-        #     else:
-        #         piv += 1
+        while j < limit :
+            if nums[j] != nums[i - 1]:
+                j +=1
+            else:
+                nums[i] = nums[j]
+                i += 1
+                j += 1
+                
 
-
-        # return len(nums)
-        unique_values = set([])
-        for n in nums:
-            unique_values.add(n)
-
-
-        return len(unique_values)
+        return len(nums)
     
 
 if __name__ == "__main__":
     s = Solution()
-    r = s.removeDuplicates([1,1,2])
+    r = s.removeDuplicates([1,1,2,2,2,2,3,3,4])
     
     print(r)
