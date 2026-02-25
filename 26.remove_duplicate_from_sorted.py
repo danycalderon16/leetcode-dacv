@@ -19,7 +19,7 @@ class Solution:
                 j += 1
                 
 
-        return len(nums)
+        return i
     
 
 if __name__ == "__main__":
