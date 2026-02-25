@@ -12,10 +12,10 @@ class Solution:
 
         while j < limit :
             if nums[j] != nums[i - 1]:
-                j +=1
-            else:
                 nums[i] = nums[j]
+                j +=1
                 i += 1
+            else:
                 j += 1
                 
 
