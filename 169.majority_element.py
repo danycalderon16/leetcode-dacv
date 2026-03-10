@@ -16,7 +16,7 @@ class Solution(object):
                 major[0] = num  
                 major[1] = elements.get(num)
         
-        return major
+        return major[0]
         
 if __name__ == '__main__':
     s = Solution()
