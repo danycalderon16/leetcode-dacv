@@ -5,24 +5,19 @@ class Solution(object):
         :rtype: int
         """
         elements = {}
+        major = [0,0]
 
         for num in nums:
             if num in elements:
                 elements[num] = elements.get(num) + 1
             else:  
                 elements[num] = 1
-
-        major = 0
-        for key, value in elements.items():
-            if value > major:
-                major = value
-
-        for key, value in elements.items():
-            if elements[key] == major:
-                return key  
+            if elements.get(num) > major[1]:
+                major[0] = num  
+                major[1] = elements.get(num)
         
         return major
         
 if __name__ == '__main__':
     s = Solution()
-    print(s.majorityElement([3,2,3]))
+    print(s.majorityElement([6,5,5]))
