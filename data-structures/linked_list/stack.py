@@ -5,8 +5,8 @@ class Node:
 
 class Stack:
     
-    def __init__(self, node:Node):
-        self.top = node
+    def __init__(self):
+        self.top = None
     
     def push(self, node:Node):
         if self.top == None:
@@ -15,6 +15,23 @@ class Stack:
             piv = self.top
             self.top = node
             self.top.prev = piv
+    
+    def is_empty(self)->bool:
+        return self.top is None
+    
+    def peek(self)->Node:
+        if self.is_empty():
+            raise Exception("Empty stack")
+        else:
+            return self.top
+    
+    def pop(self)->Node:
+        if self.is_empty():
+            raise Exception("Empty stack")
+        else:
+            piv = self.top
+            self.top = self.top.prev
+            return piv
             
     def print(self):
         stack = []
@@ -29,3 +46,8 @@ if __name__ == "__main__":
     stack.push(Node(2))
     stack.push(Node(3))
     print(stack.print())
+    stack.pop()
+    stack.pop()
+    print(stack.print())
+    stack.pop()
+    stack.pop()
