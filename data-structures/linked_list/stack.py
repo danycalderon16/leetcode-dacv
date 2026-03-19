@@ -1,7 +1,4 @@
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.prev = None
+from node import Node
 
 class Stack:
     
@@ -9,12 +6,8 @@ class Stack:
         self.top = None
     
     def push(self, node:Node):
-        if self.top == None:
-            self.top = node
-        else:
-            piv = self.top
-            self.top = node
-            self.top.prev = piv
+        node.prev = self.top
+        self.top = node
     
     def is_empty(self)->bool:
         return self.top is None
@@ -42,7 +35,7 @@ class Stack:
         return stack   
             
 if __name__ == "__main__":
-    stack = Stack(Node(1))
+    stack = Stack()
     stack.push(Node(2))
     stack.push(Node(3))
     print(stack.print())
