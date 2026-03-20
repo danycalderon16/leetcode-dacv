@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, val):
+    def __init__(self, val:int):
         self.val = val
-        self.prev = None
+        self.next = None
 
 class Queue:
     
@@ -10,24 +10,42 @@ class Queue:
         self.tail = None
         
     def is_empty(self)->bool:
-        return self.head in None
+        return self.head is None
     
     def enqueue(self, node:Node):
         if self.is_empty():
             self.head = node
             self.tail = node
+        else:
+            self.tail.next = node
+            self.tail = node
+            
+    def dequeue(self)->Node:
+        if self.is_empty():
+            raise Exception("Queue empty")
+        piv = self.head
+        self.head = self.head.next
+        if self.head is None:
+            self.tail = None
+        return piv
     
-    def print(self):
+    def display(self):
         piv = self.head
         elements = []
         while piv != None:
             elements.append(piv.val)
-            piv = piv.prev
-            
+            piv = piv.next
         print(elements)
+        
         
 if __name__ == "__main__":
     queue = Queue()
     queue.enqueue(Node(2))
     queue.enqueue(Node(3))
-    queue.print()
+    print(queue.dequeue().val)
+    queue.enqueue(Node(1))
+    queue.display()
+    print(queue.dequeue().val)
+    print(queue.dequeue().val)
+    print(queue.dequeue().val)
+    queue.display()
