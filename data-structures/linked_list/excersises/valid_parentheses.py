@@ -4,38 +4,25 @@ from stack import Stack, Node
 
 class Validator:
     
-    def __init__(self):
-        self.elements = {
+    @staticmethod
+    def is_valid(string:str)->bool:
+        pairs = {
             "(": ")",
             "{": "}",
             "[": "]"
         }
     
-    def is_valid(string:str)->bool:
         stack = Stack()
 
-        chars = list(string)
+        for c in string:
+            if c in pairs:
+                stack.push(Node(pairs[c]))
+            elif c in pairs.values():
+                if stack.is_empty or c != stack.pop().val:
+                    return false
         
-        for c in chars:
-            if c == "(":
-                stack.push(Node(")"))
-            elif c == "{":
-                stack.push(Node("}"))
-            elif c == "[":
-                stack.push(Node("]"))
-            elif stack.is_empty():
-                return False
-            elif c == ")":
-                if stack.pop().val != ")":
-                    return False
-            elif c == "}":
-                if stack.pop().val != "}":
-                    return False
-            elif c == "]":
-                if stack.pop().val != "]":
-                    return False
-        return True
-    
+        return stack.is_empty   
+            
 if __name__ == "__main__":
     print(Validator.is_valid("()"))
     print(Validator.is_valid("()[]{}"))
