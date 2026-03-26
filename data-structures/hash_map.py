@@ -2,38 +2,44 @@
 class HashMap:
     
     def __init__(self):
-        self.size = 1
+        self.size = 20
         self.map = [ [] for i in range(0,self.size)]
     
     
-    def _hash(self, value):
-        return hash(value) % self.size
+    def _hash(self, key):
+        return hash(key) % self.size
     
-    def add(self, value):
-        key = self._hash(value)
-        if self.map[key] is []:
-            self.map[key] = [value]
+    def add(self, key, value):
+        index = self._hash(key)
+        if self.map[index] is []:
+            self.map[index] = [(key, value)]
         else:
-            self.map[key].append(value)
+            self.map[index].append((key, value))
     
-    def remove(self, value):
-        key = self._hash(value)
-        elements = self.map[key]
-        if elements:
-            for el in elements:
-                if el == value:
-                    elements.remove(el)
-                    return
+    def remove(self, key):
+        index = self._hash(key)
+        elements = self.map[index]
+        if not elements:
+            raise Exception("Key not found")
+        for el in elements:
+            if el[0] == key:
+                elements.remove(el)
+                return
+        raise Exception("Key not found")
+        
         
     def display(self):
         print(self.map)
 if __name__ == "__main__":
     
     h = HashMap()
-    h.add("Hola")
-    h.add("Mundo")
-    h.add("messi")
-    h.add("neymar")
+    
+    h.add("nombre","Daniel")
+    h.add("edad",25)
+    h.add("apellido", "Calderon")
+    h.add("city","Tepic")
     h.display()
-    h.remove("neymar")
+    h.remove("edad")
+    h.remove("edad")
     h.display()
+    
