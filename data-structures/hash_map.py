@@ -21,12 +21,11 @@ class HashMap:
             
     def add(self, key, value):
         index = self._hash(key)
-        if self.search(key):
-            for el in self.map[index]:
-                if el[0] == key:
-                    el[1] = value
-        else:
-            self.map[index].append((key, value))
+        for el in self.map[index]:
+            if el[0] == key:
+                el[1] = value
+                return           
+        self.map[index].append([key, value])
         
     
     def remove(self, key):
@@ -49,7 +48,7 @@ class HashMap:
         for el in elements:
             if el[0] == key:
                 return el[1]
-        raise Exception("Key not found")
+        raise KeyError("Key not found")
     
     
     def display(self):
